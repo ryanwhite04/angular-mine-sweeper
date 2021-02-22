@@ -1,1 +1,7 @@
-<p>game works!</p>
+<mat-slider thumbLabel (change)="reset()" min="1" max="10" step="1" [(value)]="columns"></mat-slider>
+<mat-slider thumbLabel (change)="reset()" min="1" max="10" step="1" [(value)]="rows"></mat-slider>
+
+    {{columns * rows}} Cells
+<div id="board" [style.--columns]="columns">
+    <button *ngFor="let cell of cells" type="button" mat-fab>1</button>
+</div>
