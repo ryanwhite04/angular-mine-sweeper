@@ -4,4 +4,15 @@
       grid-template-columns: repeat(var(--columns), auto);
       justify-content: center;
       font-weight: bold;
+      border: 1px black solid;
+      padding: 5px;
+}
+
+#board .cell button[disabled] {
+    color: black;
+}
+
+#board .cell button.open.mine {
+    background: red;
+    color: red;
 }

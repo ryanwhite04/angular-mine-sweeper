@@ -1,7 +1,26 @@
-<mat-slider thumbLabel (change)="reset()" min="1" max="10" step="1" [(value)]="columns"></mat-slider>
-<mat-slider thumbLabel (change)="reset()" min="1" max="10" step="1" [(value)]="rows"></mat-slider>
+<div class="option">
+    <span>{{columns}} Columns</span>
+    <mat-slider thumbLabel (change)="reset()" min="1" max="10" step="1" [(value)]="columns"></mat-slider>
+</div>
+<div class="option">
+    <span>{{rows}} Rows</span>
+    <mat-slider thumbLabel (change)="reset()" min="1" max="10" step="1" [(value)]="rows"></mat-slider>
+</div>
+<div class="option">
+    <span>{{difficulty}} Difficulty</span>
+    <mat-slider thumbLabel (change)="reset()" min="0.1" max="0.9" step="0.1" [(value)]="difficulty"></mat-slider>
+</div>
+<div>
+    <button mat-button id="reset" (click)="reset()">Reset</button>
+</div>
 
     {{columns * rows}} Cells
 <div id="board" [style.--columns]="columns">
-    <button *ngFor="let cell of cells" type="button" mat-fab>1</button>
+    <div class="cell" *ngFor="let cell of cells; let i = index"> 
+        <button [ngClass]="{
+          mine: cell.mine,
+          open: cell.open,
+          flag: cell.flag
+        }" [disabled]="cell.open" (click)="move(cell.position, i)" type="button" mat-fab>{{cell.open ? cell.count : ''}}</button>
+    </div>
 </div>
