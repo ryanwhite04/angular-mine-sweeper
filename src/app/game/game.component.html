@@ -1,28 +1,29 @@
-<div id="settings">
-    <div class="option">
-        <span>{{columns}} Columns</span>
-        <mat-slider thumbLabel (change)="reset()" min="minColumns" max="maxColumns" step="1" [(value)]="columns"></mat-slider>
-    </div>
-    <div class="option">
-        <span>{{rows}} Rows</span>
-        <mat-slider thumbLabel (change)="reset()" min="minRows" max="maxColumns" step="1" [(value)]="rows"></mat-slider>
-    </div>
-    <div class="option">
-        <span>{{difficulty}} Difficulty</span>
-        <mat-slider thumbLabel (change)="reset()" min="minDifficulty" max="maxDifficulty" step="0.1" [(value)]="difficulty"></mat-slider>
-    </div>
-    <div>
-        <button mat-button id="reset" (click)="reset()">Reset</button>
-    </div>
-</div>
+<section id="settings">
 
-    {{columns * rows}} Cells
+    <div class="option">
+        <div class="label">{{columns}} Columns</div>
+        <mat-slider thumbLabel (change)="reset()" [min]="minColumns" [max]="maxColumns" step="1" [(value)]="columns"></mat-slider>
+    </div>
+    <div class="option">
+        <div class="label">{{rows}} Rows</div>
+        <mat-slider thumbLabel (change)="reset()" [min]="minRows" [max]="maxColumns" step="1" [(value)]="rows"></mat-slider>
+    </div>
+    <div class="option">
+        <div class="label">{{difficulty}} Difficulty</div>
+        <mat-slider thumbLabel (change)="reset()" [min]="minDifficulty" [max]="maxDifficulty" step="0.1" [(value)]="difficulty"></mat-slider>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="option">
+        <button mat-raised-button color="primary" id="reset" (click)="reset()">Reset</button>
+    </div>
+</section>
+
 <div id="board" [style.--columns]="columns">
     <div class="cell" *ngFor="let cell of cells; let i = index"> 
         <button [ngClass]="{
           mine: cell.mine,
           open: cell.open,
           flag: cell.flag
-        }" [disabled]="cell.open" (click)="move(cell.position, i)" type="button" mat-fab>{{cell.open ? cell.count : ''}}</button>
+        }" [disabled]="cell.open" [style.color]="color(cell.count)" (click)="move(cell.position, i)" type="button" mat-fab>{{(cell.open && !cell.mine) ? cell.count : ''}}</button>
     </div>
 </div>

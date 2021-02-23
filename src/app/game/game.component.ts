@@ -32,6 +32,19 @@ export class GameComponent implements OnInit {
       this.generateCells();
   }
   
+  color(number) {
+      return [
+          "none",
+          "blue",
+          "green",
+          "red",
+          "darkblue",
+          "brown",
+          "cyan",
+          "black",
+          "gray",
+      ][number]
+  }
   generateCells() {
       let total = this.rows * this.columns;
       this.cells = [...Array(total)].map((v, position) => new Cell({
